@@ -35,7 +35,7 @@ postForm!:FormGroup
   }
   const post:Post = {
     title:this.postForm.value.title,
-    description:this.postForm.value.description
+    description:this.postForm.value.description,
   }
   this.store.dispatch(addPost({post}))
 
