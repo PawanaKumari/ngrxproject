@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <h3>Update Post</h3>
         <hr>
-        <!-- <form [formGroup]="postForm" (ngSubmit)="onUpdatePost()">
+        <form [formGroup]="postForm" (ngSubmit)="onSubmit()" >
             <div class="mb-3">
                 <label>Title</label>
                 <input type ="text " class="form-control" formControlName="title"/>
@@ -16,8 +16,8 @@
                
             </div>
             <div class="my-3">
-                <button type="submit" class="btn btn-primary" [disabled]="!postForm.valid">Update Post</button>
+                <button type="submit" class="btn btn-primary">Update Post</button>
             </div>
-        </form> -->
+        </form>
     </div>
 </div>
