@@ -16,29 +16,31 @@ import { getPostById } from '../post-list/state/post.selector';
 export class EditPostComponent implements OnInit, OnDestroy {
   postForm!: FormGroup;
   post!: Post;
-  postSubscription!: Subscription;
-  constructor(private route: ActivatedRoute, private store: Store<AppState>,private router:Router) {}
+  postSubscription: Subscription | undefined;
+  constructor(private route: ActivatedRoute,
+     private store: Store<AppState>,
+     private router:Router) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
+  
       const id = params.get('id');
       this.postSubscription = this.store
         .select(getPostById, { id })
-        .subscribe((post:any) => {
-
-          console.log(post,"data")
-          this.post = post;
+        .subscribe((data) => {
+          console.log(data,"dataaaaaa")
+          this.post = data;
           this.createForm();
         });
     });
   }
   createForm() {
     this.postForm = new FormGroup({
-      title: new FormControl(null, [
+      title: new FormControl(this.post.title, [
         Validators.required,
         Validators.minLength(6),
       ]),
-      description: new FormControl(null, [
+      description: new FormControl(this.post.description, [
         Validators.required,
         Validators.minLength(10),
       ]),
@@ -51,7 +53,9 @@ export class EditPostComponent implements OnInit, OnDestroy {
     const title = this.postForm.value.title;
     const description = this.postForm.value.description;
     const post: Post = {
-      id: this.post.id,title,description
+      id: this.post.id,
+      title,
+      description,
     }
     this.store.dispatch(updatePost({post}));
     this.router.navigate(['posts'])
