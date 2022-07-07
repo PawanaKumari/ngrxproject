@@ -14,51 +14,60 @@ import { getPostById } from '../post-list/state/post.selector';
   styleUrls: ['./edit-post.component.css'],
 })
 export class EditPostComponent implements OnInit, OnDestroy {
-  postForm!: FormGroup;
-  post!: Post;
-  postSubscription: Subscription | undefined;
-  constructor(private route: ActivatedRoute,
-     private store: Store<AppState>,
-     private router:Router) {}
+  post: Post | any;
+  postForm: FormGroup | any;
+  postSubscription: Subscription | any;
+  constructor(
+    private route: ActivatedRoute,
+    private store: Store<AppState>,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.createForm();
     this.route.paramMap.subscribe((params) => {
-  
       const id = params.get('id');
+      console.log(id, 'iddd');
       this.postSubscription = this.store
-        .select(getPostById, { id })
+        .select(getPostById,id )
         .subscribe((data) => {
-          console.log(data,"dataaaaaa")
+          console.log(data, 'ddddd');
           this.post = data;
-          this.createForm();
         });
     });
+    console.log(this.postSubscription,"sdfsdfd")
+
   }
   createForm() {
     this.postForm = new FormGroup({
-      title: new FormControl(this.post.title, [
+      title: new FormControl(null, [
         Validators.required,
         Validators.minLength(6),
       ]),
-      description: new FormControl(this.post.description, [
+      description: new FormControl(null, [
         Validators.required,
         Validators.minLength(10),
       ]),
     });
   }
-  onSubmit(){
-    if(!this.postForm.valid){
+  onSubmit() {
+    if (!this.postForm.valid) {
       return;
     }
+
     const title = this.postForm.value.title;
+    console.log(title, 'title');
     const description = this.postForm.value.description;
+
     const post: Post = {
       id: this.post.id,
       title,
       description,
-    }
-    this.store.dispatch(updatePost({post}));
-    this.router.navigate(['posts'])
+    };
+
+    //dispatch the action
+    this.store.dispatch(updatePost({ post }));
+    this.router.navigate(['posts']);
   }
   ngOnDestroy() {
     if (this.postSubscription) {

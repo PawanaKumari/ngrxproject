@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
+
 import { PostsService } from './posts.service';
 
 describe('PostsService', () => {
@@ -11,6 +12,9 @@ describe('PostsService', () => {
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(service).toBeTruthy(true);
   });
+ 
 });
+
+

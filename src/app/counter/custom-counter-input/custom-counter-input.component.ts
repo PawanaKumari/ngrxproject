@@ -22,7 +22,7 @@ channelName$!:Observable<string>;
   onAdd(){
     this.store.dispatch(customIncrement({value:+this.value}))
    
-    console.log(this.value)
+    console.log(this.value,"value")
   }
   onChangeChannelName(){
     this.store.dispatch(changeChannelName())

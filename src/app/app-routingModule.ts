@@ -3,7 +3,8 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '',
+   component: HomeComponent },
   {
     path: 'counter',
     loadChildren: () =>

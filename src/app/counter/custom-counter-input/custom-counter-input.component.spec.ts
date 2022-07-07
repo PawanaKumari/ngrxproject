@@ -6,12 +6,12 @@ describe('CustomCounterInputComponent', () => {
   let component: CustomCounterInputComponent;
   let fixture: ComponentFixture<CustomCounterInputComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CustomCounterInputComponent ]
-    })
-    .compileComponents();
-  });
+  // beforeEach(async () => {
+  //   await TestBed.configureTestingModule({
+  //     declarations: [ CustomCounterInputComponent ]
+  //   })
+  //   .compileComponents();
+  // });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CustomCounterInputComponent);
@@ -22,4 +22,8 @@ describe('CustomCounterInputComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  // it('should create add', () => {
+  //   expect(component.onAdd).toBeTruthy();
+  // });
+
 });

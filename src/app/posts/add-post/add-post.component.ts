@@ -12,7 +12,7 @@ import { addPost } from '../post-list/state/post.action';
   styleUrls: ['./add-post.component.css']
 })
 export class AddPostComponent implements OnInit {
-postForm!:FormGroup
+postForm:FormGroup|any
   constructor(private router:Router,private store:Store<AppState>) { }
 
   ngOnInit(): void {
